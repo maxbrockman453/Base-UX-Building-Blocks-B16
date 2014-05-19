@@ -9,7 +9,12 @@
 
     subgraph cluster_1 {
       label="Main Site Navigation";
-      Home -> Incident_Button;
       Emergency_Chat;
+      Schedule_Onsite_Estimate;
+      Products_Svcs;
+      Company_Info;
+      Login_out;
+      Home -> Emergency_Chat -> Incident_Button;
+      Home -> Incident_Button;
     }
   }
