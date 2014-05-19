@@ -1,7 +1,15 @@
-digraph {
-  Report_An_Incident -> auth;
-  auth -> reg_user -> incident_form;
-  auth -> new_user -> registration -> incident_form;
-  incident_form -> confirmation_links_to_addl_prod_svcs;
+  digraph {
+    subgraph cluster_0 {
+      label="Report An Incident ";
+      Incident_Button -> auth;
+      auth -> reg_user -> incident_form;
+      auth -> new_user -> registration -> incident_form;
+      incident_form -> confirmation_links_to_addl_prod_svcs;
+    }
 
-}
+    subgraph cluster_1 {
+      label="Main Site Navigation";
+      Home -> Incident_Button;
+      Emergency_Chat;
+    }
+  }
