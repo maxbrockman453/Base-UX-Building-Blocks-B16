@@ -1,0 +1,69 @@
+digraph Bus_Ride{
+  label="
+  Liz's Morning Bus Ride to Code Fellows";
+  Leave [label="Liz leaves her apartment"]
+  CrossFactoria [label="Cross Factoria Blvd to bus stop"]
+  210 [label="Bus 210 hasn't come yet."]
+  Board210 [label="Board 210"]
+  Olive [label="Get off at 6th & Olive"]
+  Crosswalk [label="Cross Olive"]
+  Wait [label="Wait for South Lake Union Street Car"]
+  SLUSC [label="Board SLUSC"]
+  ExitTerry [label="Get off at Terry & Mercer"]
+  Walk511 [label="Walk to 511 Boren Ave N"]
+  Missed210 [label="Drat! Missed 210!"]
+  Time [label="What time is it?"]
+  245 [label="245 is next bus"]
+  Board245 [label="Board 245"]
+  240 [label="240 is next bus"]
+  Board240 [label="Board 240"]
+  AltBusStop [label="Walk to another bus stop"]
+  Eastgate [label="Eastgate Park & Ride"]
+  212 [label="Board 212"]
+  241 [label="241 is next bus"]
+  Board241 [label="Board 241"]
+  South_Bellevue [label="South Bellevue Park & Ride"]
+  550 [label="Board 550"]
+  WestlakeStation [label="Get off at Westlake Bus Tunnel Station"]
+  ExitWestlake [label="Exit bus tunnel via Westlake Mall exit"]
+  Oliveand5 [label="Cross both Olive and 5th Avenue"]
+  {rank=same;210 Missed210}
+  {rank=same;Board210 Time}
+  {rank=same;245 240 241}
+  {rank=same;Board245 Board240 Board241}
+  {rank=same;Olive WestlakeStation}
+  {rank=same;Crosswalk Oliveand5}
+
+  //Made 210 (The easy way)
+  Leave -> CrossFactoria -> 210;
+  210 -> Board210 [label="Wait for 210"];
+  Board210 -> Olive [label="Ride 210 to Seattle"];
+
+  //Made it to Seattle
+  Olive -> Crosswalk -> Wait -> SLUSC;
+  SLUSC  -> ExitTerry [label="Ride SLUSC to Terry & Mercer"];
+  ExitTerry  -> Walk511;
+
+  //Missed 210, taking 245
+  Time -> 245;
+  245 -> AltBusStop;
+  AltBusStop -> Board245 [label="Wait for 245"];
+  Board245 -> Eastgate [label="Ride 245 to Eastgate P&R"];
+
+  //Missed 210, taking 240
+  CrossFactoria -> Missed210 -> Time -> 240;
+  240 -> Board240 [label="Wait for 240"];
+  Board240 -> Eastgate [label="Ride 240 to Eastgate P&R"];
+
+  //From Eastgate
+  Eastgate -> 212 [label="Wait for 212 to Seattle"];
+  212 -> Olive [label="Ride 212 to Seattle"];
+
+  //Missed 210, taking 241 and 550
+  Time -> 241;
+  241 -> Board241 [label="Wait for 241"];
+  Board241 -> South_Bellevue [label="Ride 241 to South Bellevue P&R"];
+  South_Bellevue -> 550 [label="Wait for 550 to Seattle"];
+  550 -> WestlakeStation [label="Ride 550 to Seattle"];
+  WestlakeStation -> ExitWestlake -> Oliveand5 -> Wait;
+}
